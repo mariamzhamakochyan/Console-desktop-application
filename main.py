@@ -30,6 +30,7 @@ class Doubly:
     def push_back(self, data):
         new_node = Node(data)
         # check if the list is empty
+	
         if self.__size == 0 and not self.__head and not self.__tail:
             self.__head = new_node
             self.__tail = new_node
