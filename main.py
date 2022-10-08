@@ -79,13 +79,44 @@ class DoublyLinkedList:
             self.size_ -=1
         print("Content cleared. ")
 
-        
+    def iter(self):
+        # Iterate the list
+        current = self.head
+        while current:
+            item_val = current.data
+            current = current.next
+            yield item_val
+            
+    def insert(self, key, data):
+        if self.size_ == 0 and not self.head and not self.tail:
+            print("Please add some data to your List.")
+        else:
+            new_node = Node(data)
+            current_node = self.head
+            while current_node:
+                if current_node.data == key:
+                    if not current_node.next:
+                        current_node.next = new_node
+                        new_node.prev = current_node
+                        self.tail = new_node
+                    else:
+                        next_node = current_node.next
+                        current_node.next = new_node
+                        new_node.prev = current_node
+                        new_node.next = next_node
+                        next_node.prev = new_node
+                    self.size_ += 1
+                    return
+                else:
+                    current_node = current_node.next
+
 
 if __name__ == "__main__":
     myList = DoublyLinkedList()
     myList.push_back(1)
     myList.push_back(2)
     myList.push_back(3)
+    myList.insert(2, 4)
     myList.front()
     print()
     myList.back()
@@ -95,6 +126,6 @@ if __name__ == "__main__":
     myList.traverse_fw()
     print()
     print("Size:", myList.size())
-    myList.clear()
-    print()
-    print("Size:", myList.size())
+    # myList.clear()
+    # print()
+    # print("Size:", myList.size())
