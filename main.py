@@ -16,8 +16,14 @@ class DoublyLinkedList:
         self.tail = None
         self.size_ = 0
         
- 
-    
+    def front(self):
+        '''This function access the first element.'''
+        print(self.head.data)
+        
+    def back(self):
+        '''This function access the last element.'''
+        print(self.tail.data)       
+        
     def push_back(self, data):
         '''This function is for adding an element to the end'''
         
@@ -80,6 +86,10 @@ if __name__ == "__main__":
     myList.push_back(1)
     myList.push_back(2)
     myList.push_back(3)
+    myList.front()
+    print()
+    myList.back()
+    print()
     myList.empty()
     print()
     myList.traverse_fw()
