@@ -1,8 +1,8 @@
-'''This is the main file'''
+"""This is the main file"""
 
 
 class Node:
-    '''This class is intended to represent a doubly linked list'''
+    """This class is intended to represent a doubly linked list"""
 
     def __init__(self, data):
         self.data = data
@@ -11,7 +11,7 @@ class Node:
 
 
 class DoublyLinkedList:
-    '''This class is for our functions '''
+    """This class is for our functions """
 
     def __init__(self):
         self.head = None
@@ -19,15 +19,15 @@ class DoublyLinkedList:
         self.size_ = 0
 
     def front(self):
-        '''This function access the first element.'''
+        """This function access the first element."""
         print(self.head.data)
 
     def back(self):
-        '''This function access the last element.'''
+        """This function access the last element."""
         print(self.tail.data)
 
     def push_back(self, data):
-        '''This function is for adding an element to the end'''
+        """This function is for adding an element to the end"""
 
         new_node = Node(data)
         if self.size_ == 0 and not self.head and not self.tail:
@@ -40,7 +40,7 @@ class DoublyLinkedList:
         self.size_ += 1
 
     def push_front(self, data):
-        '''This function inserts an element to the beginning'''
+        """This function inserts an element to the beginning"""
 
         new_node = Node(data)
         if self.size_ == 0 and not self.head and not self.tail:
@@ -59,7 +59,7 @@ class DoublyLinkedList:
             current_node = current_node.next
 
     def empty(self):
-        '''This function is for checkin if the list is empty'''
+        """This function is for checkin if the list is empty"""
 
         if self.size_ == 0 and not self.head and not self.tail:
             print("The list is empty.")
@@ -67,13 +67,13 @@ class DoublyLinkedList:
             return
 
     def size(self):
-        '''This function returns the number of elements'''
+        """This function returns the number of elements"""
         return self.size_
 
     def clear(self):
-        '''This function clears the contents'''
+        """This function clears the contents"""
 
-        while (self.head != None):
+        while self.head is not None:
             temp = self.head
             self.head = self.head.next
             temp = None
@@ -129,4 +129,3 @@ if __name__ == "__main__":
     print("Size:", myList.size())
     # myList.clear()
     # print()
-    # print("Size:", myList.size())
