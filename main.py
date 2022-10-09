@@ -1,32 +1,34 @@
 '''This is the main file'''
 
+
 class Node:
     '''This class is intended to represent a doubly linked list'''
-    
+
     def __init__(self, data):
         self.data = data
         self.next = None
         self.prev = None
 
+
 class DoublyLinkedList:
-    '''This class is for our functions '''        
+    '''This class is for our functions '''
 
     def __init__(self):
         self.head = None
         self.tail = None
         self.size_ = 0
-        
+
     def front(self):
         '''This function access the first element.'''
         print(self.head.data)
-        
+
     def back(self):
         '''This function access the last element.'''
-        print(self.tail.data)       
-        
+        print(self.tail.data)
+
     def push_back(self, data):
         '''This function is for adding an element to the end'''
-        
+
         new_node = Node(data)
         if self.size_ == 0 and not self.head and not self.tail:
             self.head = new_node
@@ -36,21 +38,20 @@ class DoublyLinkedList:
             new_node.prev = self.tail
             self.tail = new_node
         self.size_ += 1
-        
+
     def push_front(self, data):
         '''This function inserts an element to the beginning'''
-        
+
         new_node = Node(data)
-        if self.size_== 0 and not self.head and not self.tail:
+        if self.size_ == 0 and not self.head and not self.tail:
             self.head = new_node
             self.tail = new_node
         else:
             new_node.next = self.head
             self.head.prev = new_node
-            self.head = new_node 
+            self.head = new_node
         self.size_ += 1
 
-       
     def traverse_fw(self):
         current_node = self.head
         while current_node:
@@ -59,24 +60,24 @@ class DoublyLinkedList:
 
     def empty(self):
         '''This function is for checkin if the list is empty'''
-        
+
         if self.size_ == 0 and not self.head and not self.tail:
             print("The list is empty.")
         else:
             return
-            
+
     def size(self):
         '''This function returns the number of elements'''
-        return self.size_  
-    
+        return self.size_
+
     def clear(self):
         '''This function clears the contents'''
-        
+
         while (self.head != None):
             temp = self.head
             self.head = self.head.next
             temp = None
-            self.size_ -=1
+            self.size_ -= 1
         print("Content cleared. ")
 
     def iter(self):
@@ -86,7 +87,7 @@ class DoublyLinkedList:
             item_val = current.data
             current = current.next
             yield item_val
-            
+
     def insert(self, key, data):
         if self.size_ == 0 and not self.head and not self.tail:
             print("Please add some data to your List.")
