@@ -52,12 +52,6 @@ class DoublyLinkedList:
             self.head = new_node
         self.size_ += 1
 
-    def traverse_fw(self):
-        current_node = self.head
-        while current_node:
-            print(current_node.data)
-            current_node = current_node.next
-
     def empty(self):
         """This function is for checkin if the list is empty"""
 
@@ -80,15 +74,17 @@ class DoublyLinkedList:
             self.size_ -= 1
         print("Content cleared. ")
 
-    def iter(self):
-        # Iterate the list
-        current = self.head
-        while current:
-            item_val = current.data
-            current = current.next
-            yield item_val
+    # def iter(self):
+    #     # Iterate the list
+    #     current = self.head
+    #     while current:
+    #         item_val = current.data
+    #         current = current.next
+    #         yield item_val
 
     def insert(self, key, data):
+        """"This function inserts the element after the given key"""
+
         if self.size_ == 0 and not self.head and not self.tail:
             print("Please add some data to your List.")
         else:
@@ -111,6 +107,104 @@ class DoublyLinkedList:
                 else:
                     current_node = current_node.next
 
+    def remove(self, data):
+        """This function removes elements satisfying specific criteria"""
+
+        # when the list is empty
+        if self.size_ == 0 and not self.head and not self.tail:
+            print("No data to remove")
+        # when the list contains 1 node
+        elif self.size_ == 1:
+            self.head = None
+            self.tail = None
+            self.size_ -= 1
+        # when the list contains more than one node
+        elif self.size_ > 1:
+            current_node = self.head
+            previous_node = None
+            while current_node:
+                # while the current node is not None
+                if current_node.data == data:
+                    # removing the head node
+                    if not previous_node:
+                        next_node = current_node.next
+                        next_node.prev = None
+                        current_node.next = None
+                        del current_node
+                        self.head = next_node
+                    # removing the tail node
+                    elif not current_node.next:
+                        previous_node.next = None
+                        current_node.prev = None
+                        del current_node
+                        self.tail = previous_node
+                    # removing any random node but not the head and the tail nodes
+                    else:
+                        next_node = current_node.next
+                        current_node.prev = None
+                        current_node.next = None
+                        del current_node
+                        previous_node.next = next_node
+                        next_node.prev = previous_node
+                    self.size_ -= 1
+                    return
+                else:
+                    previous_node = current_node
+                    current_node = current_node.next
+
+    def delete_node(self, node):
+        """This function is for deleting duplicate elements"""
+
+        cur = self.head
+        while cur:
+            if cur == node and cur == self.head:
+                if not cur.next:
+                    self.head = None
+                    return
+                else:
+                    nxt = cur.next
+                    cur.next = None
+                    nxt.prev = None
+                    self.head = nxt
+                    return
+            elif cur == node:
+                if cur.next:
+                    nxt = cur.next
+                    prev = cur.prev
+                    prev.next = nxt
+                    nxt.prev = prev
+                    cur.next = None
+                    cur.prev = None
+                    return
+                else:
+                    prev = cur.prev
+                    prev.next = None
+                    cur.prev = None
+                    return
+            cur = cur.next
+
+    def unique(self):
+        """"This function removes duplicate elements"""
+
+        cur = self.head
+        seen = {}
+        while cur:
+            if cur.data not in seen:
+                seen[cur.data] = 1
+                cur = cur.next
+            else:
+                nxt = cur.next
+                self.delete_node(cur)
+                cur = nxt
+
+    def print_list(self):
+        """This function prints our list"""
+
+        cur = self.head
+        while cur:
+            print(cur.data)
+            cur = cur.next
+
 
 if __name__ == "__main__":
     myList = DoublyLinkedList()
@@ -118,14 +212,24 @@ if __name__ == "__main__":
     myList.push_back(2)
     myList.push_back(3)
     myList.insert(2, 4)
+    myList.insert(1, 12)
+    myList.remove(12)
+
+    print("The original list:")
+    myList.print_list()
+
+    print("The first element of the list is:", end=' ')
     myList.front()
-    print()
+
+    print("The last element of the list is:", end=' ')
     myList.back()
-    print()
+
+    print("Unique elements:")
+    myList.unique()
+    myList.print_list()
+
     myList.empty()
-    print()
-    myList.traverse_fw()
-    print()
+
     print("Size:", myList.size())
-    # myList.clear()
-    # print()
+
+    myList.clear()
