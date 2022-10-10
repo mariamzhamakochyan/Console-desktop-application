@@ -322,6 +322,19 @@ class DoublyLinkedList:
         temp = slow.next
         slow.next = None
         return temp 
+    
+    # def resize(self, given_size):
+    #     if self.size_ == given_size:
+    #         print("The size hasn't changed.")
+    #     elif self.size_ > given_size:
+    #             self.tail = None
+    #             self.size_ -= 1
+                  
+    #     else:
+    #             myList.append(None)
+    #             self.size += 1
+
+ 
         
     def printList(self, node):
         """This function prints merged list"""
@@ -380,6 +393,8 @@ if __name__ == "__main__":
     myList.unique()
     myList.print_list()
     print("\n")
+    
+    # myList.resize(5)
     
     myList.head = myList.mergeSort(myList.head)    
     print ("List after sorting") 
