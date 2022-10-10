@@ -38,8 +38,8 @@ class DoublyLinkedList:
 
 
     # def merge(headA, headB):
-    #     dummyNode = Node(0)
-    #     tail = dummyNode
+    #     Node_ = Node(0)
+    #     tail = Node_
     #     while True:
     #         if headA is None:
     #             tail.next = headB
@@ -54,7 +54,7 @@ class DoublyLinkedList:
     #             tail.next = headB
     #             headB = headB.next
     #             tail = tail.next
-    #             return dummyNode.next
+    #             return Node_.next
 
 
     def begin(self):
@@ -333,6 +333,7 @@ if __name__ == "__main__":
 
     print("The original list:")
     myList.print_list()
+
     print("Size:", myList.size())
     print("The first element of the list is:", end=' ')
     myList.front()
