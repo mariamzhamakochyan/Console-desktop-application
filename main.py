@@ -17,14 +17,14 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
         self.size_ = 0
-        self.new_head = None
-        self.new_tail = None
-        self.new_size_ = 0
+        # self.new_head = None
+        # self.new_tail = None
+        # self.new_size_ = 0
 
     def append(self, data):
         """this function is for adding an element to our main list"""
 
-        if self.head == None:
+        if self.head is None:
             self.head = Node(data)
             self.tail = self.head
             self.size_ += 1
@@ -35,32 +35,45 @@ class DoublyLinkedList:
         self.tail = self.tail.next
         self.size_ += 1
 
-    def append_(self, data):
-        """this function is for adding an element to our 2nd list"""
 
-        if self.new_head == None:
-            self.new_head = Node(data)
-            self.new_tail = self.new_head
-            self.new_size_ += 1
-            return
 
-        self.new_tail.next = Node(data)
-        self.new_tail.next.prev = self.new_tail
-        self.new_tail = self.new_tail.next
-        self.new_size_ += 1
+    # def merge(headA, headB):
+    #     dummyNode = Node(0)
+    #     tail = dummyNode
+    #     while True:
+    #         if headA is None:
+    #             tail.next = headB
+    #             break
+    #         if headB is None:
+    #             tail.next = headB
+    #             break
+    #         if headA.data <= headB.data:
+    #             tail.next = headA
+    #             headA = headA.next
+    #         else:
+    #             tail.next = headB
+    #             headB = headB.next
+    #             tail = tail.next
+    #             return dummyNode.next
 
-    def merge(self):
-        while self.head and self.new_head:
-            if self.head.data < self.new_head.data:
-                self.head.next = self.new_head
-                self.new_head = None
-            else:
-                self.head, self.head.next = self.new_head, self.head
-                self.head = None
-        cur = self.head
-        while cur:
-            print(cur.data)
-            cur = cur.next
+
+    def begin(self):
+        """This function returns elements from the beginning"""
+
+        current_node = self.head
+        while current_node:
+            print(current_node.data)
+            current_node = current_node.next
+
+    def end(self):
+        """This function returns elements from the end"""
+
+        current_node = self.tail
+        while current_node:
+            print(current_node.data)
+            current_node = current_node.prev
+
+
 
     def index(self, data):
         start = self.head
@@ -98,8 +111,7 @@ class DoublyLinkedList:
         return
 
     def remove(self, index):
-        """This function removes elements satisfying
-        specific criteria"""
+        """This function removes element by index"""
 
         if index >= self.size_ or index < 0:
             raise ValueError(f"Index out of range: {index}, size: {self.size_}")
@@ -306,7 +318,7 @@ class DoublyLinkedList:
 
         cur = self.head
         while cur:
-            print(cur.data)
+            print(cur.data, end=" ")
             cur = cur.next
 
 
@@ -318,11 +330,6 @@ if __name__ == "__main__":
     myList.append(12)
     myList.append(321)
 
-    myList.append_(5)
-    myList.append_(6)
-    myList.append_(8)
-    myList.append_(45)
-    myList.append_(327)
 
     print("The original list:")
     myList.print_list()
@@ -332,23 +339,27 @@ if __name__ == "__main__":
 
     print("The last element of the list is:", end=' ')
     myList.back()
-    myList.merge()
-    print()
 
-    # myList.insert(2, 4)
-    # myList.insert(1, 12)
-    # myList.remove(0)
-    # myList.emplace(3,53)
+    print("returns the list from the beginning:")
+    myList.begin()
 
-    # print("Chaned list:")
-    # myList.print_list()
-    # print("Size:", myList.size())
+    print("returns the list from the end:")
+    myList.end()
 
-    # print("Unique elements:")
-    # myList.unique()
-    # myList.print_list()
+    myList.insert(2, 4)
+    myList.insert(1, 12)
+    myList.remove(0)
+    myList.emplace(3,53)
 
-    # myList.empty()
+    print("Changed list:")
+    myList.print_list()
+    print("Size:", myList.size())
 
-    # myList.clear()
-    # print("Size:", myList.size())
+    print("Unique elements:")
+    myList.unique()
+    myList.print_list()
+
+    myList.empty()
+
+    myList.clear()
+    print("Size:", myList.size())
