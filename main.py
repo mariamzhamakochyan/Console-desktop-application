@@ -49,9 +49,6 @@ class DoublyLinkedList:
         self.new_tail = self.new_tail.next
         self.new_size_ += 1
 
-    def resize(self, size1):
-        pass
-
     def begin(self):
         """This function returns elements from the beginning"""
 
@@ -349,25 +346,6 @@ class DoublyLinkedList:
         slow.next = None
         return temp
 
-    # def resize(self, given_size):
-    #     if self.size_ == given_size:
-    #         print("The size hasn't changed.")
-    #     while self.size_ > given_size:
-    #         tail_ = self.tail
-    #         tail_ = None
-    #         self.size_ -= 1
-    #     else:
-    #         cur = self.tail
-    #         self.push_back(0)
-    #         self.size_ -= 1
-    #     elif self.size_ > given_size:
-    #             self.tail = None
-    #             self.size_ -= 1
-
-    #     else:
-    #             myList.append(None)
-    #             self.size += 1
-
     # def splice_by_index(self, index_):
     #     """"This function moves the selected index item from another list"""
     #
@@ -397,7 +375,22 @@ class DoublyLinkedList:
             cur = self.new_head.data
             self.push_back(cur)
             self.new_head = self.new_head.next
-            self.new_size_ -= 1
+        self.new_size_ -= 1
+
+    def resize(self, size):
+        """This function changes the number of elements stored"""
+        if self.size_ < size:
+            while self.size_ < size:
+                self.append(0)
+            self.size_ += 1
+            self.size_ -= 1
+        elif self.size_ > size:
+            while self.size_ > size:
+                self.tail = self.tail.prev
+                cur = self.tail.next
+                self.delete_node(cur)
+                self.size_ -= 1
+            self.size_ += 1
 
     def print_lst(self, node):
         """This function prints merged list"""
@@ -425,9 +418,6 @@ if __name__ == "__main__":
     myList.append(12)
     myList.append(321)
 
-    # myList.resize(3)
-    # print(myList.print_list())
-
     myList.append_2nd_list(11)
     myList.append_2nd_list(12)
     myList.append_2nd_list(13)
@@ -442,6 +432,12 @@ if __name__ == "__main__":
     myList.print_list()
     print("Size:", myList.size())
     print("\n")
+
+    print("List after changing size")
+    myList.resize(7)
+    myList.print_list()
+    print("\n")
+    print("Size:", myList.size())
 
     print("List after adding element from another list")
     myList.splice()
