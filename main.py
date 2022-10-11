@@ -49,6 +49,9 @@ class DoublyLinkedList:
         self.new_tail = self.new_tail.next
         self.new_size_ += 1
 
+    def resize(self, size1):
+        pass
+
     def begin(self):
         """This function returns elements from the beginning"""
 
@@ -102,22 +105,23 @@ class DoublyLinkedList:
 
         if index >= self.size_ or index < 0:
             raise ValueError(f"Index out of range: {index}, size: {self.size_}")
-        if index == 0:
+        elif index == 0:
             self.head = self.head.next
             self.head.prev = None
             self.size_ -= 1
             return
-        if index == self.size - 1:
+        elif index == self.size_ - 1:
             self.tail = self.tail.prev
             self.tail.next = None
             self.size_ -= 1
             return
-        start = self.head
-        for _ in range(index):
-            start = start.next
-        start.prev.next, start.next.prev = start.next, start.prev
-        self.size_ -= 1
-        return
+        if index != 0 and self.new_size_ > index > 0:
+            start = self.head
+            for _ in range(index):
+                start = start.next
+            start.prev.next, start.next.prev = start.next, start.prev
+            self.size_ -= 1
+            return
 
     # def resize(self, s):
     #     # if self.size_ > s:
@@ -456,12 +460,12 @@ if __name__ == "__main__":
 
     print("returns the list from the end:")
     myList.end()
-
+    myList.remove(3)
+    myList.push_back(1100)
+    myList.push_front(125)
     myList.insert(21, 4)
     myList.insert(321, 17)
-    myList.remove(0)
     myList.emplace(3, 3)
-    print("Size:", myList.size())
 
     print("Changed list:")
     myList.print_list()
