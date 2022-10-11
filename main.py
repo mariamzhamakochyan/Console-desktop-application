@@ -2,7 +2,7 @@
 
 
 class Node:
-    """This class is intended to represent a doubly linked list"""
+    """This class is for creating new Node"""
 
     def __init__(self, data):
         self.data = data
@@ -11,15 +11,15 @@ class Node:
 
 
 class DoublyLinkedList:
-    """This class is for our functions """
+    """This class is for creating doubly linked list"""
 
     def __init__(self):
         self.head = None
         self.tail = None
         self.size_ = 0
-        # self.new_head = None
-        # self.new_tail = None
-        # self.new_size_ = 0
+        self.new_head = None
+        self.new_tail = None
+        self.new_size_ = 0
 
     def append(self, data):
         """this function is for adding an element to our main list"""
@@ -34,6 +34,20 @@ class DoublyLinkedList:
         self.tail.next.prev = self.tail
         self.tail = self.tail.next
         self.size_ += 1
+
+    def append_2nd_list(self, data):
+        """this function is for adding an element to our main list"""
+
+        if self.new_head is None:
+            self.new_head = Node(data)
+            self.new_tail = self.new_head
+            self.new_size_ += 1
+            return
+
+        self.new_tail.next = Node(data)
+        self.new_tail.next.prev = self.new_tail
+        self.new_tail = self.new_tail.next
+        self.new_size_ += 1
 
     def begin(self):
         """This function returns elements from the beginning"""
@@ -51,14 +65,13 @@ class DoublyLinkedList:
             print(current_node.data)
             current_node = current_node.prev
 
-
-    def index(self, data):
-        start = self.head
-        for i in range(self.size_):
-            if start.data == data:
-                return i
-            start = start.next
-        return None
+    # def index(self, data):
+    #     start = self.head
+    #     for i in range(self.size_):
+    #         if start.data == data:
+    #             return i
+    #         start = start.next
+    #     return None
 
     def emplace(self, index, data):
         """"This function emplace the element at the given index"""
@@ -100,11 +113,19 @@ class DoublyLinkedList:
             self.size_ -= 1
             return
         start = self.head
-        for i in range(index):
+        for _ in range(index):
             start = start.next
         start.prev.next, start.next.prev = start.next, start.prev
         self.size_ -= 1
         return
+
+    # def resize(self, s):
+    #     # if self.size_ > s:
+    #     while self.size_ > s:
+    #         self.tail = self.tail.prev
+    #         cur = self.tail.next
+    #         self.delete_node(cur)
+    #         self.size_ -= 1
 
     def front(self):
         """This function access the first element."""
@@ -156,9 +177,9 @@ class DoublyLinkedList:
         """This function clears the contents"""
 
         while self.head is not None:
-            temp = self.head
+            # temp = self.head
             self.head = self.head.next
-            temp = None
+            # temp = None
             self.size_ -= 1
         self.size_ -= 1
         print("Content cleared. ")
@@ -277,74 +298,111 @@ class DoublyLinkedList:
                 nxt = cur.next
                 self.delete_node(cur)
                 cur = nxt
-                
+        self.size_ -= 1
+
     def merge(self, first, second):
         """This function merges two sorted lists"""
-        
-        if first is None: 
-            return second  
-        if second is None: 
-            return first 
-        if first.data < second.data: 
-            first.next = self.merge(first.next, second) 
-            first.next.prev = first 
-            first.prev = None   
-            return first 
-        else: 
-            second.next = self.merge(first, second.next) 
-            second.next.prev = second 
-            second.prev = None
-            return second 
-            
-    def mergeSort(self, tempHead):
-        """Function to do merge sort"""
-        
-        if tempHead is None:  
-            return tempHead 
-        if tempHead.next is None: 
-            return tempHead
-        second = self.split(tempHead) 
-        tempHead = self.mergeSort(tempHead) 
-        second = self.mergeSort(second)
-        return self.merge(tempHead, second) 
 
-    def split(self, tempHead):
+        if first is None:
+            return second
+        if second is None:
+            return first
+        if first.data < second.data:
+            first.next = self.merge(first.next, second)
+            first.next.prev = first
+            first.prev = None
+            return first
+        else:
+            second.next = self.merge(first, second.next)
+            second.next.prev = second
+            second.prev = None
+            return second
+
+    def merge_sort(self, temp_head):
+        """Function to do merge sort"""
+
+        if temp_head is None:
+            return temp_head
+        if temp_head.next is None:
+            return temp_head
+        second = self.split(temp_head)
+        temp_head = self.merge_sort(temp_head)
+        second = self.merge_sort(second)
+        return self.merge(temp_head, second)
+
+    def split(self, temp_head):
         """This function splits a doubly linked list into two half-sized dlls"""
-        
-        fast = slow =  tempHead 
-        while(True): 
-            if fast.next is None: 
+
+        fast = slow = temp_head
+        while True:
+            if fast.next is None:
                 break
-            if fast.next.next is None: 
+            if fast.next.next is None:
                 break
-            fast = fast.next.next 
+            fast = fast.next.next
             slow = slow.next
         temp = slow.next
         slow.next = None
-        return temp 
-    
+        return temp
+
     # def resize(self, given_size):
     #     if self.size_ == given_size:
     #         print("The size hasn't changed.")
+    #     while self.size_ > given_size:
+    #         tail_ = self.tail
+    #         tail_ = None
+    #         self.size_ -= 1
+    #     else:
+    #         cur = self.tail
+    #         self.push_back(0)
+    #         self.size_ -= 1
     #     elif self.size_ > given_size:
     #             self.tail = None
     #             self.size_ -= 1
-                  
+
     #     else:
     #             myList.append(None)
     #             self.size += 1
 
- 
-        
-    def printList(self, node):
-        """This function prints merged list"""
-        temp = node 
-        while(node is not None): 
-            print (node.data,end=" ") 
-            temp = node 
-            node = node.next
-        print ("\n") 
+    # def splice_by_index(self, index_):
+    #     """"This function moves the selected index item from another list"""
+    #
+    #     if index_ == 0:
+    #         cur = self.new_head.data
+    #         self.push_back(cur)
+    #     elif index_ == self.new_size_ - 1:
+    #         cur = self.new_tail.data
+    #         self.push_back(cur)
+    #         return
+    #     start = self.new_head
+    #     if index_ != 0 and self.new_size_ > index_ > 0:
+    #         for i in range(index_):
+    #             start = start.next
+    #         start.prev = start.next.prev
+    #         # start.prev, start.next = start.next.prev, start.prev
+    #         self.new_head = start.prev
+    #         cur = self.new_head.data
+    #         self.push_back(cur)
+    #     else:
+    #         print("Index is out of range")
 
+    def splice(self):
+        """"This function moves elements from another list"""
+
+        while self.new_head is not None:
+            cur = self.new_head.data
+            self.push_back(cur)
+            self.new_head = self.new_head.next
+            self.new_size_ -= 1
+
+    def print_lst(self, node):
+        """This function prints merged list"""
+        # temp = node
+        while node is not None:
+            print(node.data, end=" ")
+            # temp = node
+            node = node.next
+        print("\n")
 
     def print_list(self):
         """This function prints our list"""
@@ -357,17 +415,36 @@ class DoublyLinkedList:
 
 if __name__ == "__main__":
     myList = DoublyLinkedList()
-    myList.append(15)
+    myList.append(113)
     myList.append(21)
     myList.append(3)
     myList.append(12)
     myList.append(321)
 
+    # myList.resize(3)
+    # print(myList.print_list())
 
+    myList.append_2nd_list(11)
+    myList.append_2nd_list(12)
+    myList.append_2nd_list(13)
+    myList.append_2nd_list(14)
+    myList.append_2nd_list(15)
+    #
+    # # myList.splice_by_index(2)
+    # # myList.print_list()
+    # # print("\n")
+    #
     print("The original list:")
     myList.print_list()
-
     print("Size:", myList.size())
+    print("\n")
+
+    print("List after adding element from another list")
+    myList.splice()
+    myList.print_list()
+    print("Size:", myList.size())
+    print("\n")
+
     print("The first element of the list is:", end=' ')
     myList.front()
 
@@ -384,24 +461,22 @@ if __name__ == "__main__":
     myList.insert(321, 17)
     myList.remove(0)
     myList.emplace(3, 3)
+    print("Size:", myList.size())
 
     print("Changed list:")
     myList.print_list()
     print("Size:", myList.size())
 
+    myList.head = myList.merge_sort(myList.head)
+    print("List after sorting")
+    myList.print_lst(myList.head)
+
     print("Unique elements:")
     myList.unique()
     myList.print_list()
     print("\n")
-    
-    # myList.resize(5)
-    
-    myList.head = myList.mergeSort(myList.head)    
-    print ("List after sorting") 
-    myList.printList(myList.head)
-
-    myList.empty()
 
     myList.clear()
+
     print("Size:", myList.size())
     myList.empty()
