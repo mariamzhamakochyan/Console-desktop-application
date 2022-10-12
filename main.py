@@ -162,11 +162,9 @@ class DoublyLinkedList:
         """This function clears the contents"""
 
         while self.head is not None:
-            # temp = self.head
             self.head = self.head.next
-            # temp = None
             self.size_ -= 1
-        self.size_ -= 1
+        self.size_ = 0
         print("Content cleared. ")
 
     def insert(self, key, data):
@@ -238,7 +236,8 @@ class DoublyLinkedList:
                 nxt = cur.next
                 self.delete_node(cur)
                 cur = nxt
-        self.size_ -= 1
+                self.size_ -= 1
+        self.print_list()
 
     def merge(self):
         """Sort list in place."""
@@ -299,28 +298,32 @@ class DoublyLinkedList:
             self.push_back(cur)
             self.new_head = self.new_head.next
         self.new_size_ -= 1
+        self.print_list()
 
     def resize(self, size):
         """This function changes the number of elements stored"""
-        if self.size_ < size:
+
+        if size == 0 or self.size_ == size:
+            print("Nothing changed.")
+            self.size_ = self.size_
+        elif size < 0:
+            print("Size can not be negative")
+        elif self.size_ < size:
             while self.size_ < size:
                 self.append(0)
-            self.size_ += 1
-            self.size_ -= 1
         elif self.size_ > size:
             while self.size_ > size:
                 self.tail = self.tail.prev
                 cur = self.tail.next
                 self.delete_node(cur)
                 self.size_ -= 1
-            self.size_ += 1
+        self.print_list()
 
     def print_lst(self, node):
         """This function prints merged list"""
         # temp = node
         while node is not None:
             print(node.data, end=" ")
-            # temp = node
             node = node.next
         print("\n")
 
@@ -364,14 +367,11 @@ if __name__ == "__main__":
     print("\n")
 
     print("List after changing size")
-    myList.resize(7)
-    myList.print_list()
-    print("\n")
+    myList.resize(3)
     print("Size:", myList.size())
 
     print("List after adding element from another list")
     myList.splice()
-    myList.print_list()
     print("Size:", myList.size())
     print("\n")
 
@@ -399,13 +399,15 @@ if __name__ == "__main__":
 
     print("List after sorting")
     myList.merge()
+    print("Size:", myList.size())
 
     print("Unique elements:")
     myList.unique()
-    myList.print_list()
+    print("Size:", myList.size())
+
     print("\n")
 
     myList.clear()
-
     print("Size:", myList.size())
+    myList.print_list()
     myList.empty()
