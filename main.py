@@ -115,7 +115,7 @@ class DoublyLinkedList:
     def front(self):
         """This function access the first element."""
         print(self.head.data)
-
+        
     def back(self):
         """This function access the last element."""
         print(self.tail.data)
@@ -453,10 +453,10 @@ if __name__ == "__main__":
 
     myList1 = DoublyLinkedList()
     myList1.append(1)
-    myList1.append(2)
+    myList1.append(27)
     myList1.append(3)
     myList1.append(4)
-    myList1.append(5)
+    myList1.append(15)
 
     print(myList == myList1)
     print(myList != myList1)
