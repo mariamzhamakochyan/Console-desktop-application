@@ -383,9 +383,6 @@ class DoublyLinkedList:
                 self.head = self.head.next
                 other.head = other.head.next
 
-            # if self.head.data == other.head.data:
-            #     return False
-
 
 
         # elif self.size_ > other.size_:
