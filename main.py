@@ -413,11 +413,6 @@ class DoublyLinkedList:
 
         return [a + b for a, b in zip(self, other)]
 
-    # def __iadd__(self, other):
-    #     """Implement comparison: a += b"""
-    #     self.next.data += other.next.data
-    #     self.head.next = other.head.next.__iadd__(other.head.next)
-    #     return self
 
     def __lshift__(self, other):
         """Implement comparison: a << b"""
@@ -428,25 +423,18 @@ class DoublyLinkedList:
     def __copy__(self):
         pass
 
-        # if type(self) is not type(other):
-        #     return False
-        # if self.size_ == other.size_:
-        #     while self.head and other.head:
-        #         if self.head.data > other.head.data:
-        #             return True
-        #             self.head = self.head.next
-        #             other.head = other.head.next
-        #         elif self.head.data < other.head.data:
-        #             return False
-        #         self.head = self.head.next
-        #         other.head = other.head.next
-
-        # elif self.size_ > other.size_:
-        #     while self.size_ > other.size_:
-        #         myList.self.append(0)
-        #         self.size_ += 1
-        #
-        #         return True
+    def __iadd__(self, other):
+        """Implement comparison: a += b"""
+        
+        return self._iadd(self.head, other, other.head)
+    def _iadd(self, node1, other, node2):
+        if not node1:
+            return other
+        if not node2:
+            return self
+        node1.data += node2.data
+        self._iadd(node1.next, other, node2.next)
+        return self
 
 
 if __name__ == "__main__":
@@ -478,8 +466,10 @@ if __name__ == "__main__":
     print(myList <= myList1)
     print(myList + myList1)
     print(myList << 1)
-    # myList += myList1
-    # myList.print_list()
+    myList += myList1
+    myList.print_list()
+    print("\n")
+    
 
     print("The original list:")
     myList.print_list()
