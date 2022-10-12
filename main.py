@@ -370,20 +370,55 @@ class DoublyLinkedList:
     def __gt__(self, other):
         """Implement comparison: a > b."""
 
-        if type(self) is not type(other):
-            return False
-        if self.size_ == other.size_:
-            while self.head and other.head:
-                if self.head.data > other.head.data:
-                    return True
-                    self.head = self.head.next
-                    other.head = other.head.next
-                elif self.head.data < other.head.data:
-                    return False
-                self.head = self.head.next
-                other.head = other.head.next
+        return [a > b for a, b in zip(self, other)]
 
+    def __lt__(self, other):
+        """Implement comparison: a < b."""
 
+        return [a < b for a, b in zip(self, other)]
+
+    def __ge__(self, other):
+        """Implement comparison: a >= b."""
+
+        return [a >= b for a, b in zip(self, other)]
+
+    def __le__(self, other):
+        """Implement comparison: a <= b."""
+
+        return [a <= b for a, b in zip(self, other)]
+
+    def __add__(self, other):
+        """Implement comparison: a +b."""
+
+        return [a + b for a, b in zip(self, other)]
+
+    # def __iadd__(self, other):
+    #     """Implement comparison: a += b"""
+    #     self.next.data += other.next.data
+    #     self.head.next = other.head.next.__iadd__(other.head.next)
+    #     return self
+
+    def __lshift__(self, other):
+        """Implement comparison: a << b"""
+
+        b = other
+        return [(a * 2 ** b) for a in self]
+
+    def __copy__(self):
+        pass
+
+        # if type(self) is not type(other):
+        #     return False
+        # if self.size_ == other.size_:
+        #     while self.head and other.head:
+        #         if self.head.data > other.head.data:
+        #             return True
+        #             self.head = self.head.next
+        #             other.head = other.head.next
+        #         elif self.head.data < other.head.data:
+        #             return False
+        #         self.head = self.head.next
+        #         other.head = other.head.next
 
         # elif self.size_ > other.size_:
         #     while self.size_ > other.size_:
@@ -393,22 +428,19 @@ class DoublyLinkedList:
         #         return True
 
 
-
-
-
 if __name__ == "__main__":
     myList = DoublyLinkedList()
     myList.append(1)
     myList.append(2)
-    myList.append(12)
+    myList.append(31)
     myList.append(4)
     myList.append(5)
 
-    # myList.append_2nd_list(11)
-    # myList.append_2nd_list(12)
-    # myList.append_2nd_list(13)
-    # myList.append_2nd_list(14)
-    # myList.append_2nd_list(15)
+    myList.append_2nd_list(11)
+    myList.append_2nd_list(12)
+    myList.append_2nd_list(13)
+    myList.append_2nd_list(14)
+    myList.append_2nd_list(15)
 
     myList1 = DoublyLinkedList()
     myList1.append(1)
@@ -420,55 +452,61 @@ if __name__ == "__main__":
     print(myList == myList1)
     print(myList != myList1)
     print(myList > myList1)
+    print(myList < myList1)
+    print(myList >= myList1)
+    print(myList <= myList1)
+    print(myList + myList1)
+    print(myList << 1)
+    # myList += myList1
+    # myList.print_list()
 
-    #
-    # print("The original list:")
-    # myList.print_list()
-    # print("Size:", myList.size())
-    # print("\n")
-    #
-    # print("List after changing size")
-    # myList.resize(3)
-    # print("Size:", myList.size())
-    #
-    # print("List after adding element from another list")
-    # myList.splice()
-    # print("Size:", myList.size())
-    # print("\n")
-    #
-    # print("The first element of the list is:", end=' ')
-    # myList.front()
-    #
-    # print("The last element of the list is:", end=' ')
-    # myList.back()
-    #
-    # print("returns the list from the beginning:")
-    # myList.begin()
-    #
-    # print("returns the list from the end:")
-    # myList.end()
-    # myList.remove(3)
-    # myList.push_back(1100)
-    # myList.push_front(125)
-    # myList.insert(21, 4)
-    # myList.insert(321, 17)
-    # myList.emplace(3, 3)
-    #
-    # print("Changed list:")
-    # myList.print_list()
-    # print("Size:", myList.size())
-    #
-    # print("List after sorting")
-    # myList.merge()
-    # print("Size:", myList.size())
-    #
-    # print("Unique elements:")
-    # myList.unique()
-    # print("Size:", myList.size())
-    #
-    # print("\n")
-    #
-    # myList.clear()
-    # print("Size:", myList.size())
-    # myList.print_list()
-    # myList.empty()
+    print("The original list:")
+    myList.print_list()
+    print("Size:", myList.size())
+    print("\n")
+
+    print("List after changing size")
+    myList.resize(3)
+    print("Size:", myList.size())
+
+    print("List after adding element from another list")
+    myList.splice()
+    print("Size:", myList.size())
+    print("\n")
+
+    print("The first element of the list is:", end=' ')
+    myList.front()
+
+    print("The last element of the list is:", end=' ')
+    myList.back()
+
+    print("returns the list from the beginning:")
+    myList.begin()
+
+    print("returns the list from the end:")
+    myList.end()
+    myList.remove(3)
+    myList.push_back(1100)
+    myList.push_front(125)
+    myList.insert(21, 4)
+    myList.insert(321, 17)
+    myList.emplace(3, 3)
+
+    print("Changed list:")
+    myList.print_list()
+    print("Size:", myList.size())
+
+    print("List after sorting")
+    myList.merge()
+    print("Size:", myList.size())
+
+    print("Unique elements:")
+    myList.unique()
+    print("Size:", myList.size())
+
+    print("\n")
+
+    myList.clear()
+    print("Size:", myList.size())
+    myList.print_list()
+    myList.empty()
