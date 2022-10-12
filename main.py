@@ -370,22 +370,43 @@ class DoublyLinkedList:
     def __gt__(self, other):
         """Implement comparison: a > b."""
 
-        return [a > b for a, b in zip(self, other)]
+        i  = [a > b for a, b in zip(self, other)]
+        for j in i:
+            if j is True:
+                return True
+        else:
+            return False
+            
 
     def __lt__(self, other):
         """Implement comparison: a < b."""
 
-        return [a < b for a, b in zip(self, other)]
+        i = [a < b for a, b in zip(self, other)]
+        for j in i:
+            if j is True:
+                return True
+        else:
+            return False
 
     def __ge__(self, other):
         """Implement comparison: a >= b."""
 
-        return [a >= b for a, b in zip(self, other)]
+        i = [a >= b for a, b in zip(self, other)]
+        for j in i:
+            if j is True:
+                return True
+        else:
+            return False
 
     def __le__(self, other):
         """Implement comparison: a <= b."""
 
-        return [a <= b for a, b in zip(self, other)]
+        i = [a <= b for a, b in zip(self, other)]
+        for j in i:
+            if j is True:
+                return True
+        else:
+            return False
 
     def __add__(self, other):
         """Implement comparison: a +b."""
@@ -432,7 +453,7 @@ if __name__ == "__main__":
     myList = DoublyLinkedList()
     myList.append(1)
     myList.append(2)
-    myList.append(31)
+    myList.append(3)
     myList.append(4)
     myList.append(5)
 
