@@ -28,34 +28,43 @@ myList1.append(4)
 myList1.append(5)
 
 """ '==' operator is checking if two lists are equal, and return a boolean value (True or False)"""
+print("booleanalue for '=='")
 print(myList == myList1)
 
 """ '!=' operator is checking if two lists are NOT equal, and return a boolean value (True or False)"""
+print("booleanalue for '!='")
 print(myList != myList1)
 
 """ '>' operator is checking if our first list is grater than the second one. Return a boolean value (True or False)"""
+print("booleanalue for '>'")
 print(myList > myList1)
 
 """ '<' operator is checking if our first list is smaller than the second one. Return a boolean value (True or False)"""
+print("booleanalue for '<'")
 print(myList < myList1)
 
 """ '>=' operator is checking if our first list is grater or equal to
  the second one. Return a boolean value (True or False)"""
+print("booleanalue for '>='")
 print(myList >= myList1)
 
 """ '<=' operator is checking if our first list is smaller or equal to
  the second one. Return a boolean value (True or False)"""
+print("booleanalue for '<='")
 print(myList <= myList1)
 
 """ '+' operator is the sum of two lists """
+print("output '+'")
 print(myList + myList1)
 
 """ '<<' operator returns myList
  with the bits shifted to the left by y places (and new bits on the right-hand-side are zeros). 
  This is the same as multiplying myList by 2**y. (in that case y = 1)"""
+print("output '<<'")
 print(myList << 1)
 
 """ '+=' operator adds the values of the second to the first list."""
+print("output '+='")
 myList += myList1
 myList.print_list()
 print("\n")
@@ -63,12 +72,12 @@ print("\n")
 print("The original list:")
 myList.print_list()
 print("Size:", myList.size())
-print("\n")
+# print("\n")
 
 print("List after adding element from another list")
 myList.splice()
 print("Size:", myList.size())
-print("\n")
+# print("\n")
 
 print("The first element of the list is:", end=' ')
 """This function return the first element of the list"""
@@ -99,7 +108,7 @@ myList.push_front(125)
 
 """Insert element after given element. 
 If element does not exist nothing will be inserted"""
-myList.insert(21, 4)
+myList.insert(125, 4)
 myList.insert(321, 17)
 
 """"This function emplace the element at the given index.
@@ -126,7 +135,6 @@ print("List after changing size")
 myList.resize(3)
 print("Size:", myList.size())
 
-print("\n")
 """This function clear our list"""
 myList.clear()
 print("Size:", myList.size())
