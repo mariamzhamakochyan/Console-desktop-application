@@ -84,7 +84,6 @@ myList.begin()
 
 print("returns the list from the end:")
 """This func return the list from the end"""
-
 myList.end()
 
 """Removing list elements by index.
@@ -107,29 +106,28 @@ myList.insert(321, 17)
 if index is greater or negative, we will have a ValueError"""
 myList.emplace(3, 3)
 
-
 print("Changed list:")
 myList.print_list()
 print("Size:", myList.size())
 
 print("List after sorting")
-"""This func merging two lists"""
+"""This function merges two lists"""
 myList.merge()
 print("Size:", myList.size())
 
 print("Unique elements:")
-"""This func returns unique elements"""
+"""This function returns unique elements"""
 myList.unique()
 print("Size:", myList.size())
 
-"""resize() func change our list size, if its < 0 
-we have message that size can not be negative."""
+"""resize() function change our list size, if its < 0 
+we have message that size can not be negative.If it = 0 our lst will be cleared"""
 print("List after changing size")
 myList.resize(3)
 print("Size:", myList.size())
 
 print("\n")
-"""This func clear our list"""
+"""This function clear our list"""
 myList.clear()
 print("Size:", myList.size())
 myList.print_list()
