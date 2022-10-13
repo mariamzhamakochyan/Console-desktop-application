@@ -1,8 +1,7 @@
-import unittest
 from main import Node
 from main import DoublyLinkedList
 
-"""That's how we creating lists."""
+"""That's how we creat lists."""
 myList = DoublyLinkedList()
 myList1 = DoublyLinkedList()
 myList2 = DoublyLinkedList()
@@ -66,13 +65,6 @@ myList.print_list()
 print("Size:", myList.size())
 print("\n")
 
-print("List after changing size")
-
-"""resize() func change our list size, if its < 0 
-we have message that size can not be negative."""
-myList.resize(3)
-print("Size:", myList.size())
-
 print("List after adding element from another list")
 myList.splice()
 print("Size:", myList.size())
@@ -130,11 +122,16 @@ print("Unique elements:")
 myList.unique()
 print("Size:", myList.size())
 
+"""resize() func change our list size, if its < 0 
+we have message that size can not be negative."""
+print("List after changing size")
+myList.resize(3)
+print("Size:", myList.size())
+
 print("\n")
 """This func clear our list"""
 myList.clear()
 print("Size:", myList.size())
 myList.print_list()
-
 """We check if list is cleared and is empty """
 myList.empty()
