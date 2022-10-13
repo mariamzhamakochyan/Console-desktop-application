@@ -468,6 +468,7 @@ if __name__ == "__main__":
     print(myList + myList1)
     print(myList << 1)
     myList += myList1
+    myList.print_list()
     print("\n")
 
     print("The original list:")
