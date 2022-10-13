@@ -369,7 +369,6 @@ class DoublyLinkedList:
 
     def __gt__(self, other):
         """Implement comparison: list1 > list2."""
-        i = [a > b for a, b in zip(self, other)]
 
         i = [a > b for a, b in zip(self, other)]
         for j in i:
@@ -391,22 +390,28 @@ class DoublyLinkedList:
     def __ge__(self, other):
         """Implement comparison: list1 >= list2."""
 
-        i = [a >= b for a, b in zip(self, other)]
-        for j in i:
-            if j is True:
-                return True
-        else:
-            return False
+        for i, j in zip(self, other):
+            if i != j:
+                i1 = [i > j for i, j in zip(self, other)]
+                for j1 in i1:
+                    if j1 is True:
+                        return True
+                else:
+                    return False
+        return True
 
     def __le__(self, other):
         """Implement comparison: list1 <= list2."""
 
-        i = [a <= b for a, b in zip(self, other)]
-        for j in i:
-            if j is True:
-                return True
-        else:
-            return False
+        for i, j in zip(self, other):
+            if i != j:
+                i1 = [i < j for i, j in zip(self, other)]
+                for j1 in i1:
+                    if j1 is True:
+                        return True
+                else:
+                    return False
+        return True
 
     def __add__(self, other):
         """Implement comparison: list1 + list2."""
@@ -420,8 +425,8 @@ class DoublyLinkedList:
     def __lshift__(self, other):
         """Implement comparison: a << b"""
 
-        b = other
-        return [(a * 2 ** b) for a in self]
+        other_el = other
+        return [(a * 2 ** other_el) for a in self]
 
     def __iadd__(self, other):
         """Implement comparison: list1 += list2"""
@@ -439,9 +444,9 @@ class DoublyLinkedList:
 if __name__ == "__main__":
     myList = DoublyLinkedList()
     myList.append(1)
-    myList.append(2)
+    myList.append(12)
     myList.append(3)
-    myList.append(4)
+    myList.append(400)
     myList.append(5)
 
     myList.append_2nd_list(11)
@@ -452,10 +457,10 @@ if __name__ == "__main__":
 
     myList1 = DoublyLinkedList()
     myList1.append(1)
-    myList1.append(27)
+    myList1.append(2)
     myList1.append(3)
     myList1.append(4)
-    myList1.append(15)
+    myList1.append(5)
 
     myList2 = DoublyLinkedList()
 
