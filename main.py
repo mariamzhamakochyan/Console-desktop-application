@@ -115,7 +115,7 @@ class DoublyLinkedList:
     def front(self):
         """This function access the first element."""
         print(self.head.data)
-        
+
     def back(self):
         """This function access the last element."""
         print(self.tail.data)
@@ -343,7 +343,7 @@ class DoublyLinkedList:
             node = node.next
 
     def __eq__(self, other):
-        """Implement comparison: a == b."""
+        """Implement comparison: list1 == list2."""
 
         if type(self) is not type(other):
             return False
@@ -355,7 +355,7 @@ class DoublyLinkedList:
         return True
 
     def __ne__(self, other):
-        """Implement comparison: a != b."""
+        """Implement comparison: list1 != list2."""
 
         if type(self) is not type(other):
             return False
@@ -368,18 +368,18 @@ class DoublyLinkedList:
             return False
 
     def __gt__(self, other):
-        """Implement comparison: a > b."""
+        """Implement comparison: list1 > list2."""
+        i = [a > b for a, b in zip(self, other)]
 
-        i  = [a > b for a, b in zip(self, other)]
+        i = [a > b for a, b in zip(self, other)]
         for j in i:
             if j is True:
                 return True
         else:
             return False
-            
 
     def __lt__(self, other):
-        """Implement comparison: a < b."""
+        """Implement comparison: list1 < list2."""
 
         i = [a < b for a, b in zip(self, other)]
         for j in i:
@@ -389,7 +389,7 @@ class DoublyLinkedList:
             return False
 
     def __ge__(self, other):
-        """Implement comparison: a >= b."""
+        """Implement comparison: list1 >= list2."""
 
         i = [a >= b for a, b in zip(self, other)]
         for j in i:
@@ -399,7 +399,7 @@ class DoublyLinkedList:
             return False
 
     def __le__(self, other):
-        """Implement comparison: a <= b."""
+        """Implement comparison: list1 <= list2."""
 
         i = [a <= b for a, b in zip(self, other)]
         for j in i:
@@ -409,10 +409,13 @@ class DoublyLinkedList:
             return False
 
     def __add__(self, other):
-        """Implement comparison: a +b."""
-
-        return [a + b for a, b in zip(self, other)]
-
+        """Implement comparison: list1 + list2."""
+        lst = []
+        for i in self:
+            lst.append(i)
+        for j in other:
+            lst.append(j)
+        return lst
 
     def __lshift__(self, other):
         """Implement comparison: a << b"""
@@ -420,21 +423,17 @@ class DoublyLinkedList:
         b = other
         return [(a * 2 ** b) for a in self]
 
+    def __iadd__(self, other):
+        """Implement comparison: list1 += list2"""
+
+        while other.head is not None:
+            cur = other.head.data
+            self.push_back(cur)
+            other.head = other.head.next
+        return self
+
     def __copy__(self):
         pass
-
-    def __iadd__(self, other):
-        """Implement comparison: a += b"""
-        
-        return self._iadd(self.head, other, other.head)
-    def _iadd(self, node1, other, node2):
-        if not node1:
-            return other
-        if not node2:
-            return self
-        node1.data += node2.data
-        self._iadd(node1.next, other, node2.next)
-        return self
 
 
 if __name__ == "__main__":
@@ -458,6 +457,8 @@ if __name__ == "__main__":
     myList1.append(4)
     myList1.append(15)
 
+    myList2 = DoublyLinkedList()
+
     print(myList == myList1)
     print(myList != myList1)
     print(myList > myList1)
@@ -467,9 +468,7 @@ if __name__ == "__main__":
     print(myList + myList1)
     print(myList << 1)
     myList += myList1
-    myList.print_list()
     print("\n")
-    
 
     print("The original list:")
     myList.print_list()
