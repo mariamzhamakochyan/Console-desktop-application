@@ -2,7 +2,7 @@ import unittest
 from main import Node
 from main import DoublyLinkedList
 
-"""That's how we creating lists"""
+"""That's how we creating lists."""
 myList = DoublyLinkedList()
 myList1 = DoublyLinkedList()
 myList2 = DoublyLinkedList()
