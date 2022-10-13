@@ -135,4 +135,6 @@ print("\n")
 myList.clear()
 print("Size:", myList.size())
 myList.print_list()
+
+"""We check if list is cleared and is empty """
 myList.empty()
