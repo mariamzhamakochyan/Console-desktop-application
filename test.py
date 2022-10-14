@@ -14,13 +14,6 @@ myList.append(3)
 myList.append(400)
 myList.append(5)
 
-
-myList.append_2nd_list(11)
-myList.append_2nd_list(12)
-myList.append_2nd_list(13)
-myList.append_2nd_list(14)
-myList.append_2nd_list(15)
-
 myList1.append(1)
 myList1.append(2)
 myList1.append(3)
@@ -75,7 +68,7 @@ print("Size:", myList.size())
 # print("\n")
 
 print("List after adding element from another list")
-myList.splice()
+myList.splice(myList1)
 print("Size:", myList.size())
 # print("\n")
 
