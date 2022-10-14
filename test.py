@@ -68,7 +68,7 @@ print("Size:", myList.size())
 # print("\n")
 
 print("List after adding element from another list")
-myList.splice(myList1)
+myList.splice()
 print("Size:", myList.size())
 # print("\n")
 
