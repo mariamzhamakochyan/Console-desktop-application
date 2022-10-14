@@ -28,29 +28,29 @@ myList1.append(4)
 myList1.append(5)
 
 """ '==' operator is checking if two lists are equal, and return a boolean value (True or False)"""
-print("booleanalue for '=='")
+print("Boolean value for '=='")
 print(myList == myList1)
 
 """ '!=' operator is checking if two lists are NOT equal, and return a boolean value (True or False)"""
-print("booleanalue for '!='")
+print("Boolean value for '!='")
 print(myList != myList1)
 
 """ '>' operator is checking if our first list is grater than the second one. Return a boolean value (True or False)"""
-print("booleanalue for '>'")
+print("Boolean value for '>'")
 print(myList > myList1)
 
 """ '<' operator is checking if our first list is smaller than the second one. Return a boolean value (True or False)"""
-print("booleanalue for '<'")
+print("Boolean value for '<'")
 print(myList < myList1)
 
 """ '>=' operator is checking if our first list is grater or equal to
  the second one. Return a boolean value (True or False)"""
-print("booleanalue for '>='")
+print("Boolean value for '>='")
 print(myList >= myList1)
 
 """ '<=' operator is checking if our first list is smaller or equal to
  the second one. Return a boolean value (True or False)"""
-print("booleanalue for '<='")
+print("Boolean value for '<='")
 print(myList <= myList1)
 
 """ '+' operator is the sum of two lists """
