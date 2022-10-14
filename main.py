@@ -277,7 +277,7 @@ class DoublyLinkedList:
         slow.next = None
         return temp
 
-    def splice(self):
+    def splice(self, other):
         """"This function moves elements from another list"""
 
         while other.head is not None:
@@ -358,39 +358,50 @@ class DoublyLinkedList:
     def __gt__(self, other):
         """Implement comparison: list1 > list2."""
 
-        while self.head and other.head:
-            if self.head.data > other.head.data:
+        i = [a > b for a, b in zip(self, other)]
+        for j in i:
+            if j is True:
                 return True
-            elif self.head.data == other.head.data:
-                self.head = self.head.next
-                other.head = other.head.next
-            elif self.head.data < other.head.data:
-                return False
-        return False            
+        else:
+            return False          
 
     def __lt__(self, other):
         """Implement comparison: list1 < list2."""
 
-        while self.head and other.head:
-            if self.head.data < other.head.data:
+        i = [a < b for a, b in zip(self, other)]
+        for j in i:
+            if j is True:
                 return True
-            elif self.head.data == other.head.data:
-                self.head = self.head.next
-                other.head = other.head.next
-            elif self.head.data > other.head.data:
-                return False
-        return False
+        else:
+            return False
 
     def __ge__(self, other):
         """Implement comparison: list1 >= list2."""
         
-        return self > other or self == other
-
+        for i, j in zip(self, other):
+            if i != j:
+                i1 = [i > j for i, j in zip(self, other)]
+                for j1 in i1:
+                    if j1 is True:
+                        return True
+                else:
+                    return False
+        return True
+    
     def __le__(self, other):
         """Implement comparison: list1 <= list2."""
 
-        return self < other or self == other
 
+        for i, j in zip(self, other):
+            if i != j:
+                i1 = [i < j for i, j in zip(self, other)]
+                for j1 in i1:
+                    if j1 is True:
+                        return True
+                else:
+                    return False
+        return True
+    
     def __add__(self, other):
         """Implement comparison: list1 + list2."""
         lst = []
