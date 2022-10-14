@@ -35,19 +35,6 @@ class DoublyLinkedList:
         self.tail = self.tail.next
         self.size_ += 1
 
-    def append_2nd_list(self, data):
-        """this function is for adding an element to our main list"""
-
-        if self.new_head is None:
-            self.new_head = Node(data)
-            self.new_tail = self.new_head
-            self.new_size_ += 1
-            return
-
-        self.new_tail.next = Node(data)
-        self.new_tail.next.prev = self.new_tail
-        self.new_tail = self.new_tail.next
-        self.new_size_ += 1
 
     def begin(self):
         """This function returns elements from the beginning"""
@@ -293,12 +280,13 @@ class DoublyLinkedList:
     def splice(self):
         """"This function moves elements from another list"""
 
-        while self.new_head is not None:
-            cur = self.new_head.data
+        while other.head is not None:
+            cur = other.head.data
             self.push_back(cur)
-            self.new_head = self.new_head.next
-        self.new_size_ -= 1
+            other.head = other.head.next
+        other.size_ -= 1
         self.print_list()
+
 
     def resize(self, size):
         """This function changes the number of elements stored"""
