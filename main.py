@@ -378,6 +378,7 @@ class DoublyLinkedList:
                 other.head = other.head.next
             elif self.head.data < other.head.data:
                 return False
+        return False            
 
     def __lt__(self, other):
         """Implement comparison: list1 < list2."""
@@ -390,6 +391,7 @@ class DoublyLinkedList:
                 other.head = other.head.next
             elif self.head.data > other.head.data:
                 return False
+        return False
 
     def __ge__(self, other):
         """Implement comparison: list1 >= list2."""
