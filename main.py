@@ -277,16 +277,15 @@ class DoublyLinkedList:
         slow.next = None
         return temp
 
-    def splice(self, other):
+    def splice(self):
         """"This function moves elements from another list"""
 
-        while other.head is not None:
-            cur = other.head.data
+        while self.new_head is not None:
+            cur = self.new_head.data
             self.push_back(cur)
-            other.head = other.head.next
-        other.size_ -= 1
+            self.new_head = self.new_head.next
+        self.new_size_ -= 1
         self.print_list()
-
 
     def resize(self, size):
         """This function changes the number of elements stored"""
