@@ -370,48 +370,36 @@ class DoublyLinkedList:
     def __gt__(self, other):
         """Implement comparison: list1 > list2."""
 
-        i = [a > b for a, b in zip(self, other)]
-        for j in i:
-            if j is True:
+        while self.head and other.head:
+            if self.head.data > other.head.data:
                 return True
-        else:
-            return False
+            elif self.head.data == other.head.data:
+                self.head = self.head.next
+                other.head = other.head.next
+            elif self.head.data < other.head.data:
+                return False
 
     def __lt__(self, other):
         """Implement comparison: list1 < list2."""
 
-        i = [a < b for a, b in zip(self, other)]
-        for j in i:
-            if j is True:
+        while self.head and other.head:
+            if self.head.data < other.head.data:
                 return True
-        else:
-            return False
+            elif self.head.data == other.head.data:
+                self.head = self.head.next
+                other.head = other.head.next
+            elif self.head.data > other.head.data:
+                return False
 
     def __ge__(self, other):
         """Implement comparison: list1 >= list2."""
-
-        for i, j in zip(self, other):
-            if i != j:
-                i1 = [i > j for i, j in zip(self, other)]
-                for j1 in i1:
-                    if j1 is True:
-                        return True
-                else:
-                    return False
-        return True
+        
+        return self > other or self == other
 
     def __le__(self, other):
         """Implement comparison: list1 <= list2."""
 
-        for i, j in zip(self, other):
-            if i != j:
-                i1 = [i < j for i, j in zip(self, other)]
-                for j1 in i1:
-                    if j1 is True:
-                        return True
-                else:
-                    return False
-        return True
+        return self < other or self == other
 
     def __add__(self, other):
         """Implement comparison: list1 + list2."""
@@ -436,6 +424,3 @@ class DoublyLinkedList:
             self.push_back(cur)
             other.head = other.head.next
         return self
-
-    def __copy__(self):
-        pass
